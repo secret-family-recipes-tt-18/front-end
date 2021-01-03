@@ -4,7 +4,7 @@ const axiosWithAuth = () => {
     const token = localStorage.getItem('token');
 
     return axios.create({
-        baseURL: "",
+        baseURL: "https://tgif-secret-family-recipes-api.herokuapp.com/",
         headers: {
             authorization: token
         }
