@@ -22,7 +22,7 @@ const Signup = (props) => {
     const submitHandle = (event) => {
         event.preventDefault();
         axios
-        .post(`${BACKEND_URL}/api/auth/login/register`,formValues)
+        .post(`${BACKEND_URL}/api/auth/register`,formValues)
         .then(res => {
             console.log(res);
         })
