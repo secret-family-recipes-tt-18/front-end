@@ -26,7 +26,7 @@ const Login = (props) => {
     const submitHandle = (event) => {
         event.preventDefault();
         axios
-        .post(`${BACKEND_URL}/api/auth/login/login`)
+        .post(`${BACKEND_URL}/api/auth/login/login`, userData)
         .then(res => {
             console.log(res);
         })
