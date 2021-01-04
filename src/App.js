@@ -11,6 +11,7 @@ import { RecipesContext } from "./contexts/RecipesContext";
 //components
 import Landing from './components/Landing';
 import Login from './forms/Login';
+import Signup from './forms/Signup';
 
 //utils
 //import PrivateRoute from "./components/PrivateRoute";
@@ -30,6 +31,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Landing} />
             <Route path ='/login' component={Login} />
+            <Route path='/signup' component={Signup} />
           </Switch>
         </Router>
       </div>
