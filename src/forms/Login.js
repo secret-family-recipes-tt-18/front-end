@@ -1,6 +1,6 @@
 import React, { useState } from  'react';
 import axios from "axios";
-//import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 //import axiosWithAuth from './../utils/axiosWithAuth';
 import { BACKEND_URL } from '../utils/util';
@@ -13,7 +13,7 @@ const initialUserData = {
 
 const Login = (props) => {
 
-   // const { push } = useHistory();
+    const { push } = useHistory();
 
     const [userData, setUserData] = useState(initialUserData);
 
@@ -31,6 +31,7 @@ const Login = (props) => {
             console.log(res);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("username", userData.username);
+            push('/myrecipes');
         })
         .catch(err => {
             console.log("Error:",err);
