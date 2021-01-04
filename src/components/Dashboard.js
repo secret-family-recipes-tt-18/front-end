@@ -8,13 +8,17 @@ const Dashboard = (props) => {
     const { push } = useHistory();
 
     //hooks
-    const [setIsLoggedIn] = useContext(RecipesContext);
+    const { loggedInHook } = useContext(RecipesContext);
+
+    //effects
+
 
     const logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('username');
-        setIsLoggedIn(false);
-        push('/login');
+        loggedInHook.func(false);
+        push('/');
+        console.log(loggedInHook.isLoggedIn);
     }
 
     return (   <section>
@@ -24,6 +28,7 @@ const Dashboard = (props) => {
             </div>
         </div>
         <div className='button-contain'>
+        <button className='dashboard-button' onClick={()=> {push('/myrecipes')}}>My recipes</button>
         <button className='dashboard-button' onClick={logout}>Log Out</button>
         </div>
     </section>)

@@ -22,17 +22,29 @@ import PrivateRoute from "./components/PrivateRoute";
 function App() {
   //hooks
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [recipes, setRecipes] = useState([]);
 
+  //effects
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setIsLoggedIn(true);
     }
-  }, [])
+    //console.log("Loged");
+  }, [isLoggedIn]);
   
 
   return (
     <RecipesContext.Provider
-      value ={[setIsLoggedIn]}
+      value ={{
+        loggedInHook: {
+          value: isLoggedIn,
+          func: setIsLoggedIn
+        },
+        recipesHook: {
+          value: recipes,
+          func: setRecipes
+        }
+      }}
     >
       <div className='App'>
         <Router>
