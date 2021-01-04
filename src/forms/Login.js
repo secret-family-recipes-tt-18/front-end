@@ -1,9 +1,11 @@
-import React, { useState } from  'react';
+import React, { useContext, useState } from  'react';
 import axios from "axios";
-//import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 //import axiosWithAuth from './../utils/axiosWithAuth';
 import { BACKEND_URL } from '../utils/util';
+
+import { RecipesContext } from '../contexts/RecipesContext';
 
 
 const initialUserData = {
@@ -13,10 +15,12 @@ const initialUserData = {
 
 const Login = (props) => {
 
-   // const { push } = useHistory();
+    const { push } = useHistory();
 
+    //hooks
     const [userData, setUserData] = useState(initialUserData);
-
+    const [loading, setLoading] = useState(false);
+    const { loggedInHook } = useContext(RecipesContext);
 
     const changeHandle = (event) => {
         const { name, value } = event.target;
@@ -25,12 +29,15 @@ const Login = (props) => {
 
     const submitHandle = (event) => {
         event.preventDefault();
+        setLoading(true);
         axios
         .post(`${BACKEND_URL}/api/auth/login`, userData)
         .then(res => {
             console.log(res);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("username", userData.username);
+            loggedInHook.func(!loggedInHook.value);
+            push('/myrecipes');
         })
         .catch(err => {
             console.log("Error:",err);
@@ -55,6 +62,7 @@ const Login = (props) => {
         onChange={changeHandle}
       />
       <button>Submit...</button>
+      {loading ? <div>Loading</div> : null}
     </form>
   </div>)
 }
