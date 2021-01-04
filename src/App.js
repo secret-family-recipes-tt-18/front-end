@@ -1,5 +1,5 @@
 // libraries
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //styles
@@ -19,8 +19,14 @@ import Signup from './forms/Signup';
 
 function App() {
   //hooks
-  //const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsLoggedIn(true);
+    }
+  }, [])
+  
 
   return (
     <RecipesContext.Provider
@@ -28,6 +34,7 @@ function App() {
     >
       <div className='App'>
         <Router>
+          {isLoggedIn ? null : null}
           <Switch>
             <Route exact path='/' component={Landing} />
             <Route path ='/login' component={Login} />
