@@ -12,6 +12,7 @@ import { RecipesContext } from "./contexts/RecipesContext";
 import Landing from './components/Landing';
 import Login from './forms/Login';
 import Signup from './forms/Signup';
+import Dashboard from './components/Dashboard';
 
 //utils
 //import PrivateRoute from "./components/PrivateRoute";
@@ -30,11 +31,11 @@ function App() {
 
   return (
     <RecipesContext.Provider
-      value ={[]}
+      value ={[setIsLoggedIn]}
     >
       <div className='App'>
         <Router>
-          {isLoggedIn ? null : null}
+          {isLoggedIn ? <Dashboard/> : null}
           <Switch>
             <Route exact path='/' component={Landing} />
             <Route path ='/login' component={Login} />
