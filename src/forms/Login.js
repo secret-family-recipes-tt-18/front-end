@@ -26,9 +26,11 @@ const Login = (props) => {
     const submitHandle = (event) => {
         event.preventDefault();
         axios
-        .post(`${BACKEND_URL}/api/auth/login/login`, userData)
+        .post(`${BACKEND_URL}/api/auth/login`, userData)
         .then(res => {
             console.log(res);
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("username", userData.username);
         })
         .catch(err => {
             console.log("Error:",err);

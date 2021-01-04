@@ -1,5 +1,7 @@
 import React, { useState } from  "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+
 
 import { BACKEND_URL } from '../utils/util';
 
@@ -10,6 +12,9 @@ const initialFormValues = {
 
 
 const Signup = (props) => {
+
+    const { push } = useHistory(); 
+
     //hooks
     const [formValues, setFormValues] = useState(initialFormValues);
 
@@ -22,9 +27,10 @@ const Signup = (props) => {
     const submitHandle = (event) => {
         event.preventDefault();
         axios
-        .post(`${BACKEND_URL}/api/auth/login/register`,formValues)
+        .post(`${BACKEND_URL}/api/auth/register`,formValues)
         .then(res => {
-            console.log(res);
+            //console.log(res);
+            push('/login');
         })
         .catch(err => {
             console.log("Error:",err);
