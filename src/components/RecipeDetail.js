@@ -71,7 +71,7 @@ const RecipeDetail = () => {
                 {detail.steps.map(( step, i ) => <li key={i}>{step}</li>)}
             </ul>
         </div>
-        <button>Edit</button>
+        <button onClick={()=>{push(`/edit-item/${params.id}`)}}>Edit</button>
         <button onClick={onDelete}>Delete</button>
         <button onClick={()=>{push('/myrecipes')}}>Go Back</button>
     </div>)

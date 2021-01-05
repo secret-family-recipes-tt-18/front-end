@@ -16,6 +16,7 @@ import Dashboard from './components/Dashboard';
 import MyRecipesList from './components/MyRecipesList';
 import RecipeDetail from './components/RecipeDetail';
 import NewRecipe from './forms/NewRecipe';
+import EditRecipe from './forms/EditRecipe';
 
 //utils
 import PrivateRoute from "./components/PrivateRoute";
@@ -71,6 +72,7 @@ function App() {
             <PrivateRoute exact path='/myrecipes' component={MyRecipesList}/>
             <PrivateRoute exact path='/new-recipe' component={NewRecipe} />
             <PrivateRoute path='/item/:id' component={RecipeDetail} />
+            <PrivateRoute path='/edit-item/:id' component={EditRecipe} />
             <Route exact path='/' component={Landing} />
             <Route path ='/login' component={Login} />
             <Route path='/signup' component={Signup} />
