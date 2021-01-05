@@ -6,8 +6,8 @@ import { useHistory } from "react-router-dom";
 import { BACKEND_URL } from '../utils/util';
 
 const initialFormValues = {
-    username: "username",
-    password: "password"
+    username: "",
+    password: ""
   };
 
 
