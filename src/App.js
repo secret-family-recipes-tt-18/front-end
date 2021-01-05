@@ -20,13 +20,13 @@ import NewRecipe from './forms/NewRecipe';
 //utils
 import PrivateRoute from "./components/PrivateRoute";
 
-import { CUISINE_CATEGORIES } from './utils/util';
+import { CUISINE_CATEGORIES, DETAIL_INNITIAL_OBJ } from './utils/util';
 
 function App() {
   //hooks
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  const [detailRecipe, setDetailRecipe] = useState({});
+  const [detailRecipe, setDetailRecipe] = useState(DETAIL_INNITIAL_OBJ);
   const [categories, setCategories] = useState(CUISINE_CATEGORIES);
   const [loading, setLoading] = useState(false);
 

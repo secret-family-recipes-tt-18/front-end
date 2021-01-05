@@ -15,6 +15,7 @@ const Dashboard = (props) => {
 
     const logout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
         localStorage.removeItem('username');
         loggedInHook.func(false);
         push('/');

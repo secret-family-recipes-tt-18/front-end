@@ -15,12 +15,24 @@ const RecipeDetail = () => {
     const setDetail = detailRecipeHook.func;
     const detail = detailRecipeHook.value;
 
+    const detailFormat = (data) => {
+        const detailObj = {
+            ingredients: data.ingredients.map(ingr => ingr.ingredient),
+            steps: data.steps.map(step => step.step),
+            name: data.recipe.recipe,
+            category: data.recipe.category,
+            description: data.recipe.description,
+        };
+        return detailObj;
+    }
+
+    //effects
     useEffect(() => {
         axiosWithAuth()
         .get(`${BACKEND_URL}/api/cook/${params.id}`)
         .then(res => {
-            //console.log(res.data);
-            setDetail(res.data);
+            console.log(res.data);
+            setDetail(detailFormat(res.data));
         })
         .catch(err => {
             console.log(err);
@@ -28,7 +40,23 @@ const RecipeDetail = () => {
     }, [setDetail, params.id]);
 
     return(<div>
-        {console.log(detail)}
+        <h1>{detail.name}</h1>
+        <h2>{detail.category}</h2>
+        <div>
+            <p>{detail.description}</p>
+        </div>
+        <div>
+            ingredients:
+            <ul>
+                {detail.ingredients.map(( ing, i ) => <li key={i}>{ing}</li>)}
+            </ul>
+        </div>
+        <div>
+            steps:
+            <ul>
+                {detail.steps.map(( step, i ) => <li key={i}>{step}</li>)}
+            </ul>
+        </div>
     </div>)
 }
 
