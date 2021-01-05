@@ -3,16 +3,18 @@ import React, { useContext, useState } from 'react';
 import { RecipesContext } from '../contexts/RecipesContext';
 
 
-const initialReciope = {
+const initialRecipe = {
   name: "",
   description: "",
   category: "",
+  ingredients: ["1", "2" ,"3"],
+  steps: ["1", "2" ,"3"]
 };
 
 const NewRecipe = () => {
 
   //hooks
-  const [ currentRecipe, setCurrentRecipe ] = useState(initialReciope);
+  const [ currentRecipe, setCurrentRecipe ] = useState(initialRecipe);
   const { categoriesHook } = useContext(RecipesContext);
   const categories = categoriesHook.value;
 
@@ -25,7 +27,7 @@ const NewRecipe = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
   };
 
   // map categories abd locations from context to options for a dropdown
