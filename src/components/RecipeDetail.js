@@ -23,7 +23,7 @@ const RecipeDetail = () => {
             setDetail(res.data);
         })
         .catch(err => {
-            console.log("Error:", err);
+            console.log(err);
         });
     }, [setDetail, params.id]);
 

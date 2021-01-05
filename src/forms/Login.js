@@ -38,6 +38,7 @@ const Login = (props) => {
             setError401(false);
             setLoading(false);
             localStorage.setItem("token", res.data.token);
+            localStorage.setItem("user_id", res.data.userId);
             localStorage.setItem("username", userData.username);
             loggedInHook.func(!loggedInHook.value);
             push('/myrecipes');
