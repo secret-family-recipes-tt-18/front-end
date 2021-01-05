@@ -28,7 +28,7 @@ const MyRecipesList = () => {
     return (<div>
         <h1>{localStorage.getItem('username')}'s Recipes</h1>
         <div>
-            {recipesHook.value.map((recipe, i) => <Recipe key={i} name={recipe.recipe} category={recipe.category}/>)}
+            {recipesHook.value.map((recipe, i) => <Recipe key={i} name={recipe.recipe} category={recipe.category} id={recipe.recipe_id}/>)}
         </div>
     </div>)
 }
