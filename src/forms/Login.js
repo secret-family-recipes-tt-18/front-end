@@ -69,6 +69,7 @@ const Login = (props) => {
         onChange={changeHandle}
       />
       <button>Submit...</button>
+      <button onClick={()=>{push('/signup')}}> Sign-Up</button>
       {loading ? <div>Loading</div> : null}
       {error401 ? <div>Wrong username or password</div> : null}
     </form>
