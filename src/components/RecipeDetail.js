@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { BACKEND_URL } from '../utils/util';
@@ -9,6 +9,7 @@ import { RecipesContext } from '../contexts/RecipesContext';
 const RecipeDetail = () => {
 
     const params = useParams();
+    const { push } = useHistory();
 
     //hooks
     const { detailRecipeHook } = useContext(RecipesContext);
@@ -31,13 +32,26 @@ const RecipeDetail = () => {
         axiosWithAuth()
         .get(`${BACKEND_URL}/api/cook/${params.id}`)
         .then(res => {
-            console.log(res.data);
+            //console.log(res.data);
             setDetail(detailFormat(res.data));
         })
         .catch(err => {
             console.log(err);
         });
     }, [setDetail, params.id]);
+
+    const onDelete = () => {
+        axiosWithAuth()
+        .delete(`${BACKEND_URL}/api/cook/${params.id}`)
+        .then(res => {
+            console.log(res);
+            push('/myrecipes');
+        })
+        .catch(err => {
+            console.log(err);
+        });
+        
+    }
 
     return(<div>
         <h1>{detail.name}</h1>
@@ -57,6 +71,9 @@ const RecipeDetail = () => {
                 {detail.steps.map(( step, i ) => <li key={i}>{step}</li>)}
             </ul>
         </div>
+        <button>Edit</button>
+        <button onClick={onDelete}>Delete</button>
+        <button onClick={()=>{push('/myrecipes')}}>Go Back</button>
     </div>)
 }
 
