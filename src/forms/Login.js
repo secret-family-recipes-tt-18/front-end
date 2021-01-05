@@ -21,6 +21,7 @@ const Login = (props) => {
     const [userData, setUserData] = useState(initialUserData);
     const [loading, setLoading] = useState(false);
     const { loggedInHook } = useContext(RecipesContext);
+    const [error401, setError401] = useState(false);
 
     const changeHandle = (event) => {
         const { name, value } = event.target;
@@ -34,13 +35,19 @@ const Login = (props) => {
         .post(`${BACKEND_URL}/api/auth/login`, userData)
         .then(res => {
             console.log(res);
+            setError401(false);
+            setLoading(false);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("username", userData.username);
             loggedInHook.func(!loggedInHook.value);
             push('/myrecipes');
         })
         .catch(err => {
-            console.log("Error:",err);
+            console.log(err);
+            setLoading(false);
+            if(err.response.status === 401) {
+              setError401(true);
+            }
         });
     }
 
@@ -62,7 +69,9 @@ const Login = (props) => {
         onChange={changeHandle}
       />
       <button>Submit...</button>
+      <button onClick={()=>{push('/signup')}}> Sign-Up</button>
       {loading ? <div>Loading</div> : null}
+      {error401 ? <div>Wrong username or password</div> : null}
     </form>
   </div>)
 }
