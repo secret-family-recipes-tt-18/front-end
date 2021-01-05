@@ -1,4 +1,5 @@
 import React, { useContext, useEffect} from 'react';
+import { useHistory } from "react-router-dom";
 
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { BACKEND_URL } from '../utils/util';
@@ -8,6 +9,8 @@ import { RecipesContext } from '../contexts/RecipesContext';
 import Recipe from '../components/Recipe';
 
 const MyRecipesList = () => {
+
+    const { push } = useHistory();
 
     //hooks
     const { recipesHook } = useContext(RecipesContext);
@@ -30,6 +33,7 @@ const MyRecipesList = () => {
         <div>
             {recipesHook.value.map((recipe, i) => <Recipe key={i} name={recipe.recipe} category={recipe.category} id={recipe.recipe_id}/>)}
         </div>
+        <button onClick={()=>{push('/new-recipe')}}>Add New Recipe</button>
     </div>)
 }
 
