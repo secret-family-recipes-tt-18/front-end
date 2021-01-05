@@ -28,6 +28,7 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const [detailRecipe, setDetailRecipe] = useState({});
   const [categories, setCategories] = useState(CUISINE_CATEGORIES);
+  const [loading, setLoading] = useState(false);
 
   //effects
   useEffect(() => {
@@ -56,6 +57,10 @@ function App() {
         categoriesHook: {
           value: categories,
           func: setCategories
+        },
+        pageLoadingHook: {
+          value: loading,
+          func: setLoading
         },
       }}
     >
