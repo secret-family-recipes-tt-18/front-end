@@ -15,16 +15,19 @@ import Signup from './forms/Signup';
 import Dashboard from './components/Dashboard';
 import MyRecipesList from './components/MyRecipesList';
 import RecipeDetail from './components/RecipeDetail';
+import NewRecipe from './forms/NewRecipe';
 
 //utils
 import PrivateRoute from "./components/PrivateRoute";
-//import axiosWithAuth from "./utils/axiosWithAuth";
+
+import { CUISINE_CATEGORIES } from './utils/util';
 
 function App() {
   //hooks
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [recipes, setRecipes] = useState([]);
   const [detailRecipe, setDetailRecipe] = useState({});
+  const [categories, setCategories] = useState(CUISINE_CATEGORIES);
 
   //effects
   useEffect(() => {
@@ -50,6 +53,10 @@ function App() {
           value: detailRecipe,
           func: setDetailRecipe
         },
+        categoriesHook: {
+          value: categories,
+          func: setCategories
+        },
       }}
     >
       <div className='App'>
@@ -57,6 +64,7 @@ function App() {
           {isLoggedIn ? <Dashboard/> : null}
           <Switch>
             <PrivateRoute exact path='/myrecipes' component={MyRecipesList}/>
+            <PrivateRoute exact path='/new-recipe' component={NewRecipe} />
             <PrivateRoute path='/item/:id' component={RecipeDetail} />
             <Route exact path='/' component={Landing} />
             <Route path ='/login' component={Login} />
