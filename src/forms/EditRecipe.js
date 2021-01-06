@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { RecipesContext } from '../contexts/RecipesContext';
 
 import axiosWithAuth from '../utils/axiosWithAuth';
-import { BACKEND_URL, DETAIL_INNITIAL_OBJ, detailFormat } from '../utils/util';
+import { BACKEND_URL, DETAIL_INITIAL_OBJ, detailFormat } from '../utils/util';
 
 import IngredientInput from './IngredientInput';
 import StepInput from './StepInput';
@@ -46,7 +46,7 @@ const EditRecipe = () => {
     .put(`${BACKEND_URL}/api/cook/${params.id}`, newRecipe)
     .then(res => {
       //console.log(res);
-      setNewRecipe(DETAIL_INNITIAL_OBJ);
+      setNewRecipe(DETAIL_INITIAL_OBJ);
       push('/myrecipes');
     })
     .catch(err => {

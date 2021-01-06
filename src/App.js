@@ -21,16 +21,17 @@ import EditRecipe from './forms/EditRecipe';
 //utils
 import PrivateRoute from "./components/PrivateRoute";
 
-import { CUISINE_CATEGORIES, DETAIL_INNITIAL_OBJ } from './utils/util';
+import { CUISINE_CATEGORIES, DETAIL_INITIAL_OBJ, INNITIAL_SEARCH_OBJ } from './utils/util';
 
 function App() {
   //hooks
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  const [detailRecipe, setDetailRecipe] = useState(DETAIL_INNITIAL_OBJ);
-  const [newRecipe, setNewRecipe] = useState(DETAIL_INNITIAL_OBJ);
+  const [detailRecipe, setDetailRecipe] = useState(DETAIL_INITIAL_OBJ);
+  const [newRecipe, setNewRecipe] = useState(DETAIL_INITIAL_OBJ);
   const [categories, setCategories] = useState(CUISINE_CATEGORIES);
   const [loading, setLoading] = useState(false);
+  const [searchObject, setSearchObject] = useState(INNITIAL_SEARCH_OBJ);
 
   //effects
   useEffect(() => {
@@ -67,6 +68,10 @@ function App() {
         pageLoadingHook: {
           value: loading,
           func: setLoading
+        },
+        searchHook: {
+          value: searchObject,
+          func: setSearchObject
         },
       }}
     >

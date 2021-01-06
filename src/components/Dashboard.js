@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { RecipesContext } from '../contexts/RecipesContext';
 
-import { DETAIL_INNITIAL_OBJ } from '../utils/util';
+import { DETAIL_INITIAL_OBJ } from '../utils/util';
 
 const Dashboard = (props) => {
 
@@ -13,7 +13,7 @@ const Dashboard = (props) => {
     const { loggedInHook, newRecipeHook } = useContext(RecipesContext);
 
     const handlerMyRecipesClick = () => {
-        newRecipeHook.func(DETAIL_INNITIAL_OBJ);
+        newRecipeHook.func(DETAIL_INITIAL_OBJ);
         push('/myrecipes');
     }
 
@@ -21,7 +21,7 @@ const Dashboard = (props) => {
         localStorage.removeItem('token');
         localStorage.removeItem('user_id');
         localStorage.removeItem('username');
-        newRecipeHook.func(DETAIL_INNITIAL_OBJ);
+        newRecipeHook.func(DETAIL_INITIAL_OBJ);
         loggedInHook.func(false);
         push('/');
         console.log(loggedInHook.isLoggedIn);

@@ -7,6 +7,7 @@ import { BACKEND_URL } from '../utils/util';
 import { RecipesContext } from '../contexts/RecipesContext';
 
 import Recipe from '../components/Recipe';
+import Search from '../forms/Search';
 
 const MyRecipesList = () => {
 
@@ -35,6 +36,7 @@ const MyRecipesList = () => {
             {recipesHook.value.map((recipe, i) => <Recipe key={i} name={recipe.recipe} category={recipe.category} id={recipe.recipe_id}/>)}
         </div>
         <button onClick={()=>{push('/new-recipe')}}>Add New Recipe</button>
+        <Search />
     </div>)
 }
 
