@@ -25,6 +25,13 @@ const IngredientInput = (props) => {
         setNewRecipe({...newRecipe, steps: [...newSteps, ""]});
     }
 
+    const handlerRemoveClick = (event) => {
+        event.preventDefault();
+        const positionValue = newSteps[position];
+        const withoutElement = newSteps.filter(step => step !== positionValue);
+        setNewRecipe({...newRecipe, steps: withoutElement});
+    }
+
     return (<div>
         <input
             type="text"
@@ -33,6 +40,7 @@ const IngredientInput = (props) => {
             onChange={handlerChange}
         />
         <button onClick={handlerAddClick}>Add More</button>
+        <button onClick={handlerRemoveClick}>Remove this</button>
     </div>);
 };
 
