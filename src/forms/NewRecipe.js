@@ -4,9 +4,10 @@ import { useHistory } from "react-router-dom";
 import { RecipesContext } from '../contexts/RecipesContext';
 
 import axiosWithAuth from '../utils/axiosWithAuth';
-import { BACKEND_URL } from '../utils/util';
+import { BACKEND_URL, DETAIL_INNITIAL_OBJ } from '../utils/util';
 
 import IngredientInput from './IngredientInput';
+import StepInput from './StepInput';
 
 
 const NewRecipe = () => {
@@ -33,7 +34,8 @@ const NewRecipe = () => {
     axiosWithAuth()
     .post(`${BACKEND_URL}/api/cook`, newRecipe)
     .then(res => {
-      console.log(res);
+      //console.log(res);
+      setNewRecipe(DETAIL_INNITIAL_OBJ);
       push('/myrecipes');
     })
     .catch(err => {
@@ -90,7 +92,13 @@ const NewRecipe = () => {
         <div>
           ingredients:
           {newRecipe.ingredients.map((ingredient, i) => {
-            return <IngredientInput key={i} ingredient={ingredient} position={i}/>
+            return <IngredientInput key={i} position={i}/>
+          })}
+        </div>
+        <div>
+          steps:
+          {newRecipe.steps.map((step, i) => {
+            return <StepInput key={i} position={i}/>
           })}
         </div>
         <button>Submit</button>
