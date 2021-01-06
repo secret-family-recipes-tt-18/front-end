@@ -43,7 +43,6 @@ const NewRecipe = () => {
     });
   };
 
-  // map categories abd locations from context to options for a dropdown
   let categoryOptions = categories.map((category) => (
     <option key={category}>{category}</option>
   ));
