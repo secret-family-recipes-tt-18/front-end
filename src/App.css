@@ -100,13 +100,16 @@ html {
   height: 100vh;
   flex-direction: column;
   background-position: top;
-  background-color: rgb(250, 87, 87);
+  background-color: #f2f4f3;
 }
 .ltitle {
   font-size: 5rem;
-  font-style: bold;
+  color:whitesmoke;
+  background-color:black;
+  width: 100em ;
+  text-align: center;
 }
-button {
+  button {
   display: inline-block;
   padding: 0.35em 1.2em;
   border: 0.1em solid #ffffff;
@@ -125,7 +128,7 @@ button:hover {
   background-color: #ffffff;
 }
 .lcontain{
-  margin-top: 50px;
+  margin-top: 50vh;
 
 }
 
