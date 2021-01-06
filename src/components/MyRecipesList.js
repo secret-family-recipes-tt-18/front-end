@@ -7,6 +7,7 @@ import { BACKEND_URL } from '../utils/util';
 import { RecipesContext } from '../contexts/RecipesContext';
 
 import Recipe from '../components/Recipe';
+import Search from '../forms/Search';
 
 const MyRecipesList = () => {
 
@@ -23,6 +24,7 @@ const MyRecipesList = () => {
         .then(res => {
             const recipesByUserID = res.data.filter(recipe => recipe.user_id === parseInt(localStorage.getItem('user_id')));
             setRecipes(recipesByUserID);
+            localStorage.setItem("recipes_before_search", JSON.stringify(recipesByUserID));
         })
         .catch(err => {
             console.log("Error:", err);
@@ -35,6 +37,7 @@ const MyRecipesList = () => {
             {recipesHook.value.map((recipe, i) => <Recipe key={i} name={recipe.recipe} category={recipe.category} id={recipe.recipe_id}/>)}
         </div>
         <button onClick={()=>{push('/new-recipe')}}>Add New Recipe</button>
+        <Search beforeSearch={JSON.parse(localStorage.getItem("recipes_before_search"))}/>
     </div>)
 }
 
