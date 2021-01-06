@@ -7,7 +7,6 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 import { BACKEND_URL, DETAIL_INNITIAL_OBJ } from '../utils/util';
 
 
-
 const NewRecipe = () => {
 
   const { push } = useHistory();
