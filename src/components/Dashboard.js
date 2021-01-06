@@ -21,6 +21,7 @@ const Dashboard = (props) => {
         localStorage.removeItem('token');
         localStorage.removeItem('user_id');
         localStorage.removeItem('username');
+        localStorage.removeItem('recipes_before_search');
         newRecipeHook.func(DETAIL_INITIAL_OBJ);
         loggedInHook.func(false);
         push('/');

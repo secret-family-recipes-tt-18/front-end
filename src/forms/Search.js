@@ -2,7 +2,10 @@ import React, { useContext } from 'react';
 
 import { RecipesContext } from '../contexts/RecipesContext';
 
-const Search = () => {
+const Search = (props) => {
+
+    //props
+    const { beforeSearch } = props;
 
     //hooks
     const { searchHook, recipesHook } = useContext(RecipesContext);
@@ -23,6 +26,11 @@ const Search = () => {
         setRecipes(tempRecipes);
     }
 
+    const handlerReset = (e) => {
+        e.preventDefault();
+        setRecipes(beforeSearch);
+    }
+
     return (<div>
         <form>
             <input
@@ -32,6 +40,7 @@ const Search = () => {
                 onChange={handlerChange}
             />
             <button onClick={handlerSearchByTitle}>Search by Title</button>
+            <button onClick={handlerReset}>Reset</button>
         </form>
     </div>);
 };
