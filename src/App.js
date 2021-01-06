@@ -38,7 +38,7 @@ function App() {
     if (localStorage.getItem("token")) {
       setIsLoggedIn(true);
     }
-    //console.log("Loged");
+    console.log("Loged");
   }, [isLoggedIn]);
   
 

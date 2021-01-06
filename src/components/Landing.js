@@ -14,7 +14,7 @@ const Landing = () => {
   return (
     <div className="landing"style={{ backgroundImage: `url(${bg})` }}>
         <h1 className="ltitle">Secret Family Recipes</h1>
-        {loggedInHook.isLoggedIn ? null : (
+        {loggedInHook.value ? null : (
           <div className="lcontain">
             <button
               onClick={() => {
