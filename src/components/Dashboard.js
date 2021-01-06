@@ -3,20 +3,25 @@ import { useHistory } from 'react-router-dom';
 
 import { RecipesContext } from '../contexts/RecipesContext';
 
+import { DETAIL_INNITIAL_OBJ } from '../utils/util';
+
 const Dashboard = (props) => {
 
     const { push } = useHistory();
 
     //hooks
-    const { loggedInHook } = useContext(RecipesContext);
+    const { loggedInHook, newRecipeHook } = useContext(RecipesContext);
 
-    //effects
-
+    const handlerMyRecipesClick = () => {
+        newRecipeHook.func(DETAIL_INNITIAL_OBJ);
+        push('/myrecipes');
+    }
 
     const logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user_id');
         localStorage.removeItem('username');
+        newRecipeHook.func(DETAIL_INNITIAL_OBJ);
         loggedInHook.func(false);
         push('/');
         console.log(loggedInHook.isLoggedIn);
@@ -29,7 +34,7 @@ const Dashboard = (props) => {
             </div>
         </div>
         <div className='button-contain'>
-        <button className='dashboard-button' onClick={()=> {push('/myrecipes')}}>My recipes</button>
+        <button className='dashboard-button' onClick={handlerMyRecipesClick}>My recipes</button>
         <button className='dashboard-button' onClick={logout}>Log Out</button>
         </div>
     </section>)
