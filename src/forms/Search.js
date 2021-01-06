@@ -8,11 +8,12 @@ const Search = (props) => {
     const { beforeSearch } = props;
 
     //hooks
-    const { searchHook, recipesHook } = useContext(RecipesContext);
+    const { searchHook, recipesHook, categoriesHook } = useContext(RecipesContext);
     const search = searchHook.value;
     const setSearch = searchHook.func;
     const recipes = recipesHook.value;
     const setRecipes = recipesHook.func;
+    const categories = categoriesHook.value;
 
     const handlerChange = (e) => {
         e.preventDefault();
@@ -26,10 +27,21 @@ const Search = (props) => {
         setRecipes(tempRecipes);
     }
 
+    const handlerSearchByCategory = (e) => {
+        e.preventDefault();
+        const tempRecipes = [...recipes].filter(recipe => recipe.category === search.byCategory);
+        setRecipes(tempRecipes);
+    }
+
     const handlerReset = (e) => {
         e.preventDefault();
         setRecipes(beforeSearch);
     }
+
+    // map categories abd locations from context to options for a dropdown
+  let categoryOptions = categories.map((category) => (
+    <option key={category}>{category}</option>
+  ));
 
     return (<div>
         <form>
@@ -40,6 +52,16 @@ const Search = (props) => {
                 onChange={handlerChange}
             />
             <button onClick={handlerSearchByTitle}>Search by Title</button>
+            <button onClick={handlerReset}>Reset</button>
+            <select
+              onChange={handlerChange}
+              value={search.byCategory}
+              name='byCategory'
+            >
+              <option key=''>---Select A Category---</option>
+              {categoryOptions}
+            </select>
+            <button onClick={handlerSearchByCategory}>Search by Category</button>
             <button onClick={handlerReset}>Reset</button>
         </form>
     </div>);

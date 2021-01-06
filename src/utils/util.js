@@ -12,6 +12,7 @@ export const DETAIL_INITIAL_OBJ = {
 
 export const INNITIAL_SEARCH_OBJ ={
     byTitle: "",
+    byCategory: "",
 };
 
 export const detailFormat = (data) => {
