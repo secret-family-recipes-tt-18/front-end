@@ -21,7 +21,8 @@ const MyRecipesList = () => {
         axiosWithAuth()
         .get(`${BACKEND_URL}/api/cook`)
         .then(res => {
-            setRecipes(res.data);
+            const recipesByUserID = res.data.filter(recipe => recipe.user_id === parseInt(localStorage.getItem('user_id')));
+            setRecipes(recipesByUserID);
         })
         .catch(err => {
             console.log("Error:", err);

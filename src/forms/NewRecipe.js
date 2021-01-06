@@ -4,24 +4,19 @@ import { useHistory } from "react-router-dom";
 import { RecipesContext } from '../contexts/RecipesContext';
 
 import axiosWithAuth from '../utils/axiosWithAuth';
-import { BACKEND_URL } from '../utils/util';
+import { BACKEND_URL, DETAIL_INNITIAL_OBJ } from '../utils/util';
 
-const initialRecipe = {
-  name: "",
-  description: "",
-  category: "",
-  ingredients: ["1", "2" ,"3"],
-  steps: ["1", "2" ,"3"]
-};
+
 
 const NewRecipe = () => {
 
   const { push } = useHistory();
 
   //hooks
-  const [ currentRecipe, setCurrentRecipe ] = useState(initialRecipe);
+  const [ currentRecipe, setCurrentRecipe ] = useState(DETAIL_INNITIAL_OBJ);
   const { categoriesHook } = useContext(RecipesContext);
   const categories = categoriesHook.value;
+  
 
   const handleChange = (event) => {
 
@@ -88,6 +83,11 @@ const NewRecipe = () => {
             rows='5'
             cols='50'
           ></textarea>
+        </div>
+        <div>
+          ingredients:
+          {}
+          <button>+</button>
         </div>
         <button>Submit</button>
       </form>

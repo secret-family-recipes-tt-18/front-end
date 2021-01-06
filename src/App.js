@@ -16,18 +16,20 @@ import Dashboard from './components/Dashboard';
 import MyRecipesList from './components/MyRecipesList';
 import RecipeDetail from './components/RecipeDetail';
 import NewRecipe from './forms/NewRecipe';
+import EditRecipe from './forms/EditRecipe';
 
 //utils
 import PrivateRoute from "./components/PrivateRoute";
 
-import { CUISINE_CATEGORIES } from './utils/util';
+import { CUISINE_CATEGORIES, DETAIL_INNITIAL_OBJ } from './utils/util';
 
 function App() {
   //hooks
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  const [detailRecipe, setDetailRecipe] = useState({});
+  const [detailRecipe, setDetailRecipe] = useState(DETAIL_INNITIAL_OBJ);
   const [categories, setCategories] = useState(CUISINE_CATEGORIES);
+  const [loading, setLoading] = useState(false);
 
   //effects
   useEffect(() => {
@@ -57,6 +59,10 @@ function App() {
           value: categories,
           func: setCategories
         },
+        pageLoadingHook: {
+          value: loading,
+          func: setLoading
+        },
       }}
     >
       <div className='App'>
@@ -66,6 +72,7 @@ function App() {
             <PrivateRoute exact path='/myrecipes' component={MyRecipesList}/>
             <PrivateRoute exact path='/new-recipe' component={NewRecipe} />
             <PrivateRoute path='/item/:id' component={RecipeDetail} />
+            <PrivateRoute path='/edit-item/:id' component={EditRecipe} />
             <Route exact path='/' component={Landing} />
             <Route path ='/login' component={Login} />
             <Route path='/signup' component={Signup} />
