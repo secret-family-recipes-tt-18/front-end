@@ -104,12 +104,12 @@ html {
 }
 .ltitle {
   font-size: 5rem;
-  color:whitesmoke;
-  background-color:black;
-  width: 100em ;
+  color: whitesmoke;
+  background-color: black;
+  width: 100em;
   text-align: center;
 }
-  button {
+button {
   display: inline-block;
   padding: 0.35em 1.2em;
   border: 0.1em solid #ffffff;
@@ -127,8 +127,35 @@ button:hover {
   color: #000000;
   background-color: #ffffff;
 }
-.lcontain{
+.lcontain {
   margin-top: 50vh;
-
 }
-
+h1 {
+    font-size: 5rem;
+    color: white;
+    text-align: center;
+}
+.signup-body{
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.login-body{
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+    
+}
+.submit-b{
+    margin-top: 5px;
+}
+.userin {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
