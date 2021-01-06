@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useParams, useHistory } from "react-router-dom";
 
 import axiosWithAuth from '../utils/axiosWithAuth';
-import { BACKEND_URL } from '../utils/util';
+import { BACKEND_URL, detailFormat } from '../utils/util';
 
 import { RecipesContext } from '../contexts/RecipesContext';
 
@@ -15,17 +15,6 @@ const RecipeDetail = () => {
     const { detailRecipeHook } = useContext(RecipesContext);
     const setDetail = detailRecipeHook.func;
     const detail = detailRecipeHook.value;
-
-    const detailFormat = (data) => {
-        const detailObj = {
-            ingredients: data.ingredients.map(ingr => ingr.ingredient),
-            steps: data.steps.map(step => step.step),
-            name: data.recipe.recipe,
-            category: data.recipe.category,
-            description: data.recipe.description,
-        };
-        return detailObj;
-    }
 
     //effects
     useEffect(() => {

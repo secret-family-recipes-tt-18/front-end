@@ -29,6 +29,7 @@ const IngredientInput = (props) => {
         event.preventDefault();
         const positionValue = newSteps[position];
         const withoutElement = newSteps.filter(step => step !== positionValue);
+        if(!withoutElement.length) {withoutElement.push("")}
         setNewRecipe({...newRecipe, steps: withoutElement});
     }
 
