@@ -6,9 +6,9 @@ import { BACKEND_URL } from "../utils/util";
 
 import { RecipesContext } from "../contexts/RecipesContext";
 
-import * as yup from 'yup'
+//import * as yup from 'yup'
 
-const validationShema = yup.object().shape({
+/*const validationShema = yup.object().shape({
   username: yup
   .string()
   .label("Username")
@@ -20,7 +20,7 @@ const validationShema = yup.object().shape({
   .required()
   .min(8,"Too short...")
   .max(20,"Too big...")
-})
+})*/
 
 
 
