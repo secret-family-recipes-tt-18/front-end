@@ -1,10 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from "react-router-dom";
 
 import { RecipesContext } from '../contexts/RecipesContext';
 
 import axiosWithAuth from '../utils/axiosWithAuth';
-import { BACKEND_URL, DETAIL_INNITIAL_OBJ } from '../utils/util';
+import { BACKEND_URL } from '../utils/util';
+
+import IngredientInput from './IngredientInput';
 
 
 const NewRecipe = () => {
@@ -12,28 +14,30 @@ const NewRecipe = () => {
   const { push } = useHistory();
 
   //hooks
-  const [ currentRecipe, setCurrentRecipe ] = useState(DETAIL_INNITIAL_OBJ);
-  const { categoriesHook } = useContext(RecipesContext);
+  const { categoriesHook, newRecipeHook } = useContext(RecipesContext);
   const categories = categoriesHook.value;
+  const newRecipe = newRecipeHook.value;
+  const setNewRecipe = newRecipeHook.func;
   
+
 
   const handleChange = (event) => {
 
     const { name, value } = event.target;
     
-    setCurrentRecipe({ ...currentRecipe, [name]: value });
+    setNewRecipe({ ...newRecipe, [name]: value });
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     axiosWithAuth()
-    .post(`${BACKEND_URL}/api/cook`, currentRecipe)
+    .post(`${BACKEND_URL}/api/cook`, newRecipe)
     .then(res => {
       console.log(res);
       push('/myrecipes');
     })
     .catch(err => {
-      console.log("Error:", err)
+      console.log(err)
     });
   };
 
@@ -53,7 +57,7 @@ const NewRecipe = () => {
               id='name'
               placeholder='Recipe Name'
               onChange={handleChange}
-              value={currentRecipe.name}
+              value={newRecipe.name}
             />
           </label>
         </div>
@@ -62,7 +66,7 @@ const NewRecipe = () => {
             Category:
             <select
               onChange={handleChange}
-              value={currentRecipe.category}
+              value={newRecipe.category}
               name='category'
               id='category'
             >
@@ -77,7 +81,7 @@ const NewRecipe = () => {
             name='description'
             id='description'
             placeholder='description'
-            value={currentRecipe.description}
+            value={newRecipe.description}
             onChange={handleChange}
             rows='5'
             cols='50'
@@ -85,8 +89,9 @@ const NewRecipe = () => {
         </div>
         <div>
           ingredients:
-          {}
-          <button>+</button>
+          {newRecipe.ingredients.map((ingredient, i) => {
+            return <IngredientInput key={i} ingredient={ingredient} position={i}/>
+          })}
         </div>
         <button>Submit</button>
       </form>

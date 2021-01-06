@@ -28,6 +28,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [recipes, setRecipes] = useState([]);
   const [detailRecipe, setDetailRecipe] = useState(DETAIL_INNITIAL_OBJ);
+  const [newRecipe, setNewRecipe] = useState(DETAIL_INNITIAL_OBJ);
   const [categories, setCategories] = useState(CUISINE_CATEGORIES);
   const [loading, setLoading] = useState(false);
 
@@ -54,6 +55,10 @@ function App() {
         detailRecipeHook: {
           value: detailRecipe,
           func: setDetailRecipe
+        },
+        newRecipeHook: {
+          value: newRecipe,
+          func: setNewRecipe
         },
         categoriesHook: {
           value: categories,
