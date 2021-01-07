@@ -29,14 +29,16 @@ const Dashboard = (props) => {
     }
 
     return (   <section>
+        
         <div className="dash">
             <div className="header">
-                <h1>Welcome, {localStorage.getItem('username')}</h1>
+                <h1 className="h1-user">Welcome, {localStorage.getItem('username')}</h1>
             </div>
-        </div>
+        
         <div className='button-contain'>
         <button className='dashboard-button' onClick={handlerMyRecipesClick}>My recipes</button>
         <button className='dashboard-button' onClick={logout}>Log Out</button>
+        </div>
         </div>
     </section>)
 }

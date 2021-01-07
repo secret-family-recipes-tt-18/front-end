@@ -48,7 +48,7 @@ const NewRecipe = () => {
   ));
 
 
-    return(<div>
+    return(<div className="form">
         <form onSubmit={handleSubmit}>
         <div className='newItem-label'>
           <label htmlFor='name'>

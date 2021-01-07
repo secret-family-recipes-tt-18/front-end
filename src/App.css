@@ -96,16 +96,17 @@ html {
 .landing {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
   background-repeat: no-repeat;
   height: 100vh;
-  flex-direction: column;
   background-position: top;
   background-color: #f2f4f3;
 }
 .ltitle {
   font-size: 5rem;
   color: whitesmoke;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   width: 100em;
   text-align: center;
 }
@@ -129,33 +130,104 @@ button:hover {
 }
 .lcontain {
   margin-top: 50vh;
+  width: 100vh;
+  height: 12vh;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-h1 {
-    font-size: 5rem;
-    color: white;
-    text-align: center;
+.h1-input {
+  font-size: 5rem;
+  color: rgb(0, 0, 0);
+  text-align: center;
 }
-.signup-body{
-    background-color: black;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.signup-body {
+  background-color: black;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-.login-body{
-    background-color: black;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column wrap;
-    
+.login-body {
+  background-color: black;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
 }
-.submit-b{
-    margin-top: 5px;
+.submit-b {
+  margin-top: 5px;
 }
-.userin {
+.user-in {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+.input-square {
+  width: 250px;
+  height: 200px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  box-shadow: 5px 5px rgba(255, 255, 255, 0.158),
+    5px 5px rgba(255, 255, 255, 0.144);
+}
+.dash {
+  display: flex;
+  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+}
+.h1-user {
+  font-size: 2.5rem;
+  color: white;
+}
+.recipe-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  flex-direction: column-reverse;
+  background-color: white;
+}
+.h1-recipes {
+  font-size: 2.8rem;
+}
+.recipe-details {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-flow: column wrap;
+  background-color: rgb(255, 255, 255);
+}
+h1 {
+  font-size: 1.8rem;
+}
+h2 {
+  font-size: 1.8rem;
+}
+h3 {
+  font-size: 1.8rem;
+}
+p {
+  font-size: 1.8rem;
+}
+div {
+  font-size: 1.8rem;
+}
+html {
+  background-color: black;
+}
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  background-color: white;
 }

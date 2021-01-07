@@ -68,10 +68,10 @@ const Login = (props) => {
 
   return (
     <div className="login-body">
-      <div>
-        <h1>Log In</h1>
+      <div className="input-square">
+        <h1 className="h1-input">Log In</h1>
         <form onSubmit={submitHandle}>
-          <div className="userin">
+          <div className="user-in">
             <input
               name="username"
               type="text"

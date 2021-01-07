@@ -31,14 +31,16 @@ const MyRecipesList = () => {
         });
     }, [setRecipes]);
 
-    return (<div>
-        <h1>{localStorage.getItem('username')}'s Recipes</h1>
+    return (
+    <div className="recipe-body">
         <div>
             {recipesHook.value.map((recipe, i) => <Recipe key={i} name={recipe.recipe} category={recipe.category} id={recipe.recipe_id}/>)}
         </div>
         <button onClick={()=>{push('/new-recipe')}}>Add New Recipe</button>
         <Search beforeSearch={JSON.parse(localStorage.getItem("recipes_before_search"))}/>
-    </div>)
+        <h1 className="h1-recipes"> {localStorage.getItem('username')}'s Recipes</h1>
+    </div>
+    )
 }
 
 export default MyRecipesList;
