@@ -1,3 +1,11 @@
+/*Fonts Import*/
+@import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap');
+
+/*CSS Reset*/
 html,
 body,
 div,
@@ -207,16 +215,20 @@ button:hover {
   background-color: rgb(255, 255, 255);
 }
 h1 {
-  font-size: 1.8rem;
+  font-size: 2rem;
+  font-family: 'Redressed', cursive;
 }
 h2 {
-  font-size: 1.8rem;
+  font-size: 1.9rem;
+  font-family: 'Xanh Mono', monospace;
 }
 h3 {
   font-size: 1.8rem;
+  font-family: 'Indie Flower', cursive;
 }
 p {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
+  font-family: 'Caveat', cursive;
 }
 div {
   font-size: 1.8rem;
@@ -230,4 +242,16 @@ html {
   align-items: center;
   flex-flow: column wrap;
   background-color: white;
+}
+
+/* Recipe Details */
+
+.ingredients {
+  font-family: 'Inconsolata', monospace;
+  font-size: 1.7rem;
+}
+
+.steps {
+  font-family: 'Inconsolata', monospace;
+  font-size: 1.7rem;
 }

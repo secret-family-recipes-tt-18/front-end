@@ -50,14 +50,14 @@ const RecipeDetail = () => {
         <div>
             <p>Description {detail.description}</p>
         </div>
-        <div>
-            ingredients:
+        <div className="ingredients">
+            Ingredients:
             <ul>
                 {detail.ingredients.map(( ing, i ) => <li key={i}>{ing}</li>)}
             </ul>
         </div>
-        <div>
-            steps:
+        <div className="steps">
+            Steps:
             <ul>
                 {detail.steps.map(( step, i ) => <li key={i}>{step}</li>)}
             </ul>
