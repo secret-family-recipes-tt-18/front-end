@@ -43,7 +43,7 @@ class AlertDialog extends React.Component {
           aria-describedby='alert-dialog-description'
         >
           <DialogTitle id='alert-dialog-title'>
-            {"Successful Alert"}
+            {"Recipe delete"}
           </DialogTitle>
           <DialogContent>
             <DialogContentText id='alert-dialog-description'>

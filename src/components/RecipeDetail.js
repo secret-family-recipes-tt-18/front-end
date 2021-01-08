@@ -45,10 +45,10 @@ const RecipeDetail = () => {
     }
 
     return(<div className="recipe-details">
-        <h1>{detail.name}</h1>
-        <h2>{detail.category}</h2>
+        <h1>Title: {detail.name}</h1>
+        <h2>Category: {detail.category}</h2>
         <div>
-            <p>{detail.description}</p>
+            <p>Description {detail.description}</p>
         </div>
         <div>
             ingredients:
