@@ -11,7 +11,6 @@ const initialFormValues = {
   username: "",
   password: "",
 };
-
 const Signup = (props) => {
   const { push } = useHistory();
   const [userError, setUserError] = useState(initialFormValues);
@@ -50,7 +49,6 @@ const Signup = (props) => {
         console.log(error);
       });
   }, [formValues]);
-
   const handleSetError = (name, value) => {
     yup
       .reach(loginShema, name)
