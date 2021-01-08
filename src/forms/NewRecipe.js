@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
+import * as yup from "yup";
 
 import { RecipesContext } from '../contexts/RecipesContext';
 
@@ -9,12 +10,20 @@ import { BACKEND_URL, DETAIL_INITIAL_OBJ } from '../utils/util';
 import IngredientInput from './IngredientInput';
 import StepInput from './StepInput';
 
+import newRecipeShema from "./newRecipeShema";
+
+const initialUserData = {
+  name: "",
+  category: "",
+};
 
 const NewRecipe = () => {
 
   const { push } = useHistory();
 
   //hooks
+  const [userError, setUserError] = useState(initialUserData);
+  const [disabled, setDisabled] = useState(true);
   const { categoriesHook, newRecipeHook, pageLoadingHook } = useContext(RecipesContext);
   const categories = categoriesHook.value;
   const newRecipe = newRecipeHook.value;
@@ -22,13 +31,32 @@ const NewRecipe = () => {
   const pageLoading = pageLoadingHook.value;
   const setPageLoading = pageLoadingHook.func;
   
+  useEffect(() => {
+    console.log(userError);
+    newRecipeShema
+      .isValid(newRecipe)
+      .then((valid) => {
+        setDisabled(!valid);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [newRecipe, userError]);
 
+  const handleSetError = (name, value) => {
+    yup
+      .reach(newRecipeShema, name)
+      .validate(value)
+      .then(() => setUserError({ ...userError, [name]: "" }))
+      .catch((err) => {
+        setUserError({ ...userError, [name]: err.errors[0] });
+      });
+  };
 
   const handleChange = (event) => {
-
     const { name, value } = event.target;
-    
     setNewRecipe({ ...newRecipe, [name]: value });
+    handleSetError(name, value);
   }
 
   const handleSubmit = (event) => {
@@ -66,6 +94,7 @@ const NewRecipe = () => {
             />
           </label>
         </div>
+        <div>{userError.name}</div>
         <div className="newItem-label">
           <label className="label-text">
             Category:
@@ -80,6 +109,7 @@ const NewRecipe = () => {
             </select>
           </label>
         </div>
+        <div>{userError.category}</div>
         <div className="newItem-label">
           <label htmlFor='description'></label>
           <textarea
@@ -104,7 +134,7 @@ const NewRecipe = () => {
             return <StepInput key={i} position={i}/>
           })}
         </div>
-        <button disabled={pageLoading}>Submit</button>
+        <button disabled={pageLoading || disabled}>Submit</button>
         {pageLoading ? <div>Loading</div> : null}
       </form>
     </div>)
