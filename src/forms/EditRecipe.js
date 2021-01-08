@@ -16,10 +16,12 @@ const EditRecipe = () => {
     const { push } = useHistory();
 
   //hooks
-  const { categoriesHook, newRecipeHook } = useContext(RecipesContext);
+  const { categoriesHook, newRecipeHook, pageLoadingHook } = useContext(RecipesContext);
   const categories = categoriesHook.value;
   const newRecipe = newRecipeHook.value;
   const setNewRecipe = newRecipeHook.func;
+  const pageLoading = pageLoadingHook.value;
+  const setPageLoading = pageLoadingHook.func;
   
   //effects
   useEffect(() => {
@@ -42,10 +44,12 @@ const EditRecipe = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setPageLoading(true);
     axiosWithAuth()
     .put(`${BACKEND_URL}/api/cook/${params.id}`, newRecipe)
     .then(res => {
       //console.log(res);
+      setPageLoading(false);
       setNewRecipe(DETAIL_INITIAL_OBJ);
       push('/myrecipes');
     })
@@ -112,7 +116,8 @@ const EditRecipe = () => {
             return <StepInput key={i} position={i}/>
           })}
         </div>
-        <button>Submit</button>
+        <button disabled={pageLoading}>Submit</button>
+        {pageLoading ? <div>Loading</div> : null}
       </form>
     </div>)
 };
