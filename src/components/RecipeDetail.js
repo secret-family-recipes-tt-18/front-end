@@ -6,6 +6,8 @@ import { BACKEND_URL, detailFormat } from '../utils/util';
 
 import { RecipesContext } from '../contexts/RecipesContext';
 
+import AlertDialog from './AlertDialog';
+
 const RecipeDetail = () => {
 
     const params = useParams();
@@ -61,7 +63,8 @@ const RecipeDetail = () => {
             </ul>
         </div>
         <button onClick={()=>{push(`/edit-item/${params.id}`)}}>Edit</button>
-        <button onClick={onDelete}>Delete</button>
+        {/*<button onClick={onDelete}>Delete</button>*/}
+        <AlertDialog deleteHandler={onDelete}/>
         <button onClick={()=>{push('/myrecipes')}}>Go Back</button>
     </div>)
 }

@@ -36,7 +36,7 @@
 	BACKEND:
 	Knex, jsonwebtoken, sqlite3, jest, cors, helmet, dotenv, express, bcrypt
 	FRONTEND:
-	React, Router DOM, Axios, Context API, YUP, JSON, Bootstrap 4, Moment
+	React, Router DOM, Axios, Context API, YUP, JSON, Bootstrap 4, Material UI
 	
 ### Do the APIs you need require you to contact them to gain access?
 	No because we are creating the API
