@@ -1,3 +1,9 @@
+/*Fonts Import*/
+@import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
+/*CSS Reset*/
 html,
 body,
 div,
@@ -208,15 +214,18 @@ button:hover {
 }
 h1 {
   font-size: 1.8rem;
+  font-family: 'Redressed', cursive;
 }
 h2 {
   font-size: 1.8rem;
+  font-family: 'Xanh Mono', monospace;
 }
 h3 {
   font-size: 1.8rem;
 }
 p {
   font-size: 1.8rem;
+  font-family: 'Inconsolata', monospace;
 }
 div {
   font-size: 1.8rem;
