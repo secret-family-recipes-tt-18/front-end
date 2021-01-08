@@ -63,7 +63,7 @@ const Login = (props) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [userData]);
+  }, [userData, userError]);
 
   const handleSetError = (name, value) => {
     yup

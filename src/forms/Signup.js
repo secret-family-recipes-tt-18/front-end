@@ -48,7 +48,7 @@ const Signup = (props) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [formValues]);
+  }, [formValues, userError]);
   const handleSetError = (name, value) => {
     yup
       .reach(loginShema, name)
@@ -85,7 +85,7 @@ const Signup = (props) => {
             />
           </div>
           <div>{userError.password}</div>
-          <button className="submit-b">Sign up</button>
+          <button className="submit-b" disabled={disabled}>Sign up</button>
 
           {pageLoadingHook.value ? <div>Loading</div> : null}
         </form>
