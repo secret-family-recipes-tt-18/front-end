@@ -136,6 +136,7 @@ const NewRecipe = () => {
         </div>
         <button disabled={pageLoading || disabled}>Submit</button>
         {pageLoading ? <div>Loading</div> : null}
+        {console.log(pageLoading || disabled)}
       </form>
     </div>)
 };
