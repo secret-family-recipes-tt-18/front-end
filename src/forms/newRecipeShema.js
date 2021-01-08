@@ -8,4 +8,6 @@ name: yup
 category: yup
 .string()
 .required("category required"),
+description: yup
+.string()
 })
