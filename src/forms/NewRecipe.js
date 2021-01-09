@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 
 import { RecipesContext } from '../contexts/RecipesContext';
@@ -18,13 +18,15 @@ const NewRecipe = () => {
   const { push } = useHistory();
 
   //hooks
-  const { categoriesHook, newRecipeHook, pageLoadingHook, buttonDisabledHook } = useContext(RecipesContext);
+  const { categoriesHook, newRecipeHook, pageLoadingHook, buttonDisabledHook, error401Hook } = useContext(RecipesContext);
   const disabled = buttonDisabledHook.value;
   const categories = categoriesHook.value;
   const newRecipe = newRecipeHook.value;
   const setNewRecipe = newRecipeHook.func;
   const pageLoading = pageLoadingHook.value;
   const setPageLoading = pageLoadingHook.func;
+  const error401 = error401Hook.value;
+  const setError401 =error401Hook.func;
   const {userError, handleSetError} = useValidation(DETAIL_INITIAL_OBJ, newRecipeShema, newRecipe);
   
 
@@ -42,18 +44,28 @@ const NewRecipe = () => {
     .post(`${BACKEND_URL}/api/cook`, newRecipe)
     .then(res => {
       //console.log(res);
+      setError401(false);
       setPageLoading(false);
       setNewRecipe(DETAIL_INITIAL_OBJ);
       push('/myrecipes');
     })
     .catch(err => {
-      console.log(err)
+      console.log(err);
+      if (err.response.status === 401) {
+        setError401(true);
+      }
     });
   };
 
   let categoryOptions = categories.map((category) => (
     <option key={category}>{category}</option>
   ));
+
+  //effects
+
+  useEffect(() => {
+    if (error401) push('/login');
+  }, [error401, push]);
 
 
     return(<div className="form">
