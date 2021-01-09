@@ -32,6 +32,8 @@ function App() {
   const [categories, setCategories] = useState(CUISINE_CATEGORIES);
   const [loading, setLoading] = useState(false);
   const [searchObject, setSearchObject] = useState(INNITIAL_SEARCH_OBJ);
+  const [disabled, setDisabled] = useState(true);
+  const [error401, setError401] = useState(false);
 
   //effects
   useEffect(() => {
@@ -69,9 +71,17 @@ function App() {
           value: loading,
           func: setLoading
         },
+        buttonDisabledHook: {
+          value: disabled,
+          func: setDisabled
+        },
         searchHook: {
           value: searchObject,
           func: setSearchObject
+        },
+        error401Hook: {
+          value: error401,
+          func: setError401
         },
       }}
     >

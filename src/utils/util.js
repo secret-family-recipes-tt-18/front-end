@@ -15,6 +15,11 @@ export const INNITIAL_SEARCH_OBJ ={
     byCategory: "",
 };
 
+export const INITIAL_USER_DATA ={
+    username: "",
+    password: "",
+}
+
 export const detailFormat = (data) => {
     const detailObj = {
         ingredients: data.ingredients.map(ingr => ingr.ingredient),
