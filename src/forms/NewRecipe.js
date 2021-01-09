@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from "react-router-dom";
-import * as yup from "yup";
 
 import { RecipesContext } from '../contexts/RecipesContext';
 
@@ -10,48 +9,25 @@ import { BACKEND_URL, DETAIL_INITIAL_OBJ } from '../utils/util';
 import IngredientInput from './IngredientInput';
 import StepInput from './StepInput';
 
-import newRecipeShema from "./newRecipeShema";
+import newRecipeShema from "../validation/newRecipeShema";
+import useValidation from '../hooks/validationHook';
 
-const initialUserData = {
-  name: "",
-  category: "",
-};
 
 const NewRecipe = () => {
 
   const { push } = useHistory();
 
   //hooks
-  const [userError, setUserError] = useState(initialUserData);
-  const [disabled, setDisabled] = useState(true);
-  const { categoriesHook, newRecipeHook, pageLoadingHook } = useContext(RecipesContext);
+  const { categoriesHook, newRecipeHook, pageLoadingHook, buttonDisabledHook } = useContext(RecipesContext);
+  const disabled = buttonDisabledHook.value;
   const categories = categoriesHook.value;
   const newRecipe = newRecipeHook.value;
   const setNewRecipe = newRecipeHook.func;
   const pageLoading = pageLoadingHook.value;
   const setPageLoading = pageLoadingHook.func;
+  const {userError, handleSetError} = useValidation(DETAIL_INITIAL_OBJ, newRecipeShema, newRecipe);
   
-  useEffect(() => {
-    console.log(userError);
-    newRecipeShema
-      .isValid(newRecipe)
-      .then((valid) => {
-        setDisabled(!valid);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [newRecipe, userError]);
 
-  const handleSetError = (name, value) => {
-    yup
-      .reach(newRecipeShema, name)
-      .validate(value)
-      .then(() => setUserError({ ...userError, [name]: "" }))
-      .catch((err) => {
-        setUserError({ ...userError, [name]: err.errors[0] });
-      });
-  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;

@@ -9,6 +9,9 @@ import { BACKEND_URL, DETAIL_INITIAL_OBJ, detailFormat } from '../utils/util';
 import IngredientInput from './IngredientInput';
 import StepInput from './StepInput';
 
+import newRecipeShema from "../validation/newRecipeShema";
+import useValidation from '../hooks/validationHook';
+
 
 const EditRecipe = () => {
 
@@ -16,12 +19,14 @@ const EditRecipe = () => {
     const { push } = useHistory();
 
   //hooks
-  const { categoriesHook, newRecipeHook, pageLoadingHook } = useContext(RecipesContext);
+  const { categoriesHook, newRecipeHook, pageLoadingHook, buttonDisabledHook } = useContext(RecipesContext);
+  const disabled = buttonDisabledHook.value;
   const categories = categoriesHook.value;
   const newRecipe = newRecipeHook.value;
   const setNewRecipe = newRecipeHook.func;
   const pageLoading = pageLoadingHook.value;
   const setPageLoading = pageLoadingHook.func;
+  const {userError, handleSetError} = useValidation(DETAIL_INITIAL_OBJ, newRecipeShema, newRecipe);
   
   //effects
   useEffect(() => {
@@ -36,10 +41,9 @@ const EditRecipe = () => {
   }, [setNewRecipe, params.id]);
 
   const handleChange = (event) => {
-
     const { name, value } = event.target;
-    
     setNewRecipe({ ...newRecipe, [name]: value });
+    handleSetError(name, value);
   }
 
   const handleSubmit = (event) => {
@@ -78,6 +82,7 @@ const EditRecipe = () => {
             />
           </label>
         </div>
+        <div>{userError.name}</div>
         <div className="newItem-label">
           <label className="label-text">
             Category:
@@ -92,6 +97,7 @@ const EditRecipe = () => {
             </select>
           </label>
         </div>
+        <div>{userError.category}</div>
         <div className="newItem-label">
           <label htmlFor='description'></label>
           <textarea
@@ -116,7 +122,7 @@ const EditRecipe = () => {
             return <StepInput key={i} position={i}/>
           })}
         </div>
-        <button disabled={pageLoading}>Submit</button>
+        <button disabled={pageLoading || disabled}>Submit</button>
         {pageLoading ? <div>Loading</div> : null}
       </form>
     </div>)

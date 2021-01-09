@@ -1,27 +1,24 @@
-import * as yup from "yup";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-import { BACKEND_URL } from "../utils/util";
+import { BACKEND_URL, INITIAL_USER_DATA } from "../utils/util";
 
 import { RecipesContext } from "../contexts/RecipesContext";
-import loginShema from "./loginShema";
+import loginShema from "../validation/loginShema";
+import useValidation from '../hooks/validationHook';
 
-const initialUserData = {
-  username: "",
-  password: "",
-};
+
 const Login = (props) => {
   const { push } = useHistory();
 
-  const [userError, setUserError] = useState(initialUserData);
-
   //hooks
-  const [userData, setUserData] = useState(initialUserData);
-  const { loggedInHook, pageLoadingHook } = useContext(RecipesContext);
-  const [error401, setError401] = useState(false);
-  const [disabled, setDisabled] = useState(true);
+  const [userData, setUserData] = useState(INITIAL_USER_DATA);
+  const { loggedInHook, pageLoadingHook, buttonDisabledHook, error401Hook} = useContext(RecipesContext);
+  const disabled = buttonDisabledHook.value;
+  const error401 = error401Hook.value;
+  const setError401 = error401Hook.func;
+  const {userError, handleSetError} = useValidation(INITIAL_USER_DATA, loginShema, userData);
 
   const changeHandle = (event) => {
     const { name, value } = event.target;
@@ -53,27 +50,6 @@ const Login = (props) => {
       });
   };
 
-  useEffect(() => {
-    console.log(userError);
-    loginShema
-      .isValid(userData)
-      .then((valid) => {
-        setDisabled(!valid);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [userData, userError]);
-
-  const handleSetError = (name, value) => {
-    yup
-      .reach(loginShema, name)
-      .validate(value)
-      .then(() => setUserError({ ...userError, [name]: "" }))
-      .catch((err) => {
-        setUserError({ ...userError, [name]: err.errors[0] });
-      });
-  };
 
   return (
     <div className="login-body">
